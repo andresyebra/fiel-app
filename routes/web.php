@@ -20,7 +20,14 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/companies/index','CompanyController@index');
-
-
+Route::get('/area','AreaController@index');
 Route::get('/area/index','AreaController@index');
+Route::post('/area/create','AreaController@create');
+
+Route::get('/companies','CompanyController@index');
+Route::get('/companies/index','CompanyController@index');
+Route::post('/companies/create','CompanyController@create');
+
+Route::get('/employees','EmployeeController@index');
+Route::get('/employees/index','EmployeeController@index');
+Route::post('/employees/create','EmployeeController@create');

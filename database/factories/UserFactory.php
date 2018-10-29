@@ -24,17 +24,28 @@ $factory->define(App\User::class, function (Faker $faker) {
 
 $factory->define(App\Company::class, function (Faker $faker) {
     return [
-        'rfc' => $faker->unique()->regexify('/[A-Z]{3,4}[0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])[A-Z0-9]{2}[0-9A]/'),
-        'company' => $faker->company,
-        'address' => $faker->address,
-        'phone_number' => $faker->phoneNumber,
-        'email' => $faker->safeEmail,
-        'id_request' => $faker->phoneNumber,
-        'area' => $faker->jobTitle,
+        'clave' => $faker->unique()->randomNumber(),
+        'descripcion' => $faker->randomElement(['Empresa 1','Empresa 2','Empresa 3']),
+        'area' => $faker->randomElement(['Area 1','Area 2','Area 3']),
     ];
 });
+
 $factory->define(App\Area::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'clave' => $faker->unique()->randomNumber(),
+        'descripcion' => $faker->randomElement(['Area 1','Area 2','Area 3']),
+    ];
+});
+
+$factory->define(App\Employee::class, function (Faker $faker) {
+    return [
+        'clave' => $faker->unique()->randomNumber(),
+        'nombre' => $faker->name,
+        'curp' =>  strtoupper(str_random(18)),
+        'imss' => $faker->unique()->regexify('/[0-9]{11}/'),
+        'empresa' => $faker->randomElement(['Empresa 1','Empresa 2','Empresa 3']),
+        'area' => $faker->randomElement(['Area 1','Area 2','Area 3']),
+
+
     ];
 });
