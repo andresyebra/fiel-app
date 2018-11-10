@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Area;
+use App\Company;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -40,6 +42,15 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+
+        return view('auth.register', [
+            'companies' => Company::getComapanies(),
+            'areas' => Area::getAreas(),
+        ]);
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -48,11 +59,19 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+//        dd($data);
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'empresa' => 'required|string|max:20',
+            'area' => 'required|string|max:20',
             'password' => 'required|string|min:6|confirmed',
-        ]);
+        ], [
+                'required' => 'El campo :attribute es requerido.',
+                'max' => 'El campo :attribute maximo :max caracteres.',
+            ]
+
+        );
     }
 
     /**
@@ -66,6 +85,8 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'empresa' => $data['empresa'],
+            'area' => $data['area'],
             'password' => Hash::make($data['password']),
         ]);
     }

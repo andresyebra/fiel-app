@@ -17,6 +17,8 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
+        'empresa' => $faker->randomElement(['Empresa 1','Empresa 2','Empresa 3']),
+        'area' => $faker->randomElement(['Area 1','Area 2','Area 3']),
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
     ];
@@ -45,7 +47,12 @@ $factory->define(App\Employee::class, function (Faker $faker) {
         'imss' => $faker->unique()->regexify('/[0-9]{11}/'),
         'empresa' => $faker->randomElement(['Empresa 1','Empresa 2','Empresa 3']),
         'area' => $faker->randomElement(['Area 1','Area 2','Area 3']),
+    ];
+});
 
-
+$factory->define(App\Job::class, function (Faker $faker) {
+    return [
+        'descripcion' => $faker->jobTitle,
+        'empresa' => $faker->randomElement(['Empresa 1','Empresa 2','Empresa 3']),
     ];
 });

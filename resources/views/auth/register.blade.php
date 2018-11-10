@@ -12,7 +12,7 @@
                             {{ csrf_field() }}
 
                         <div class="form-group">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Nombre</label>
+                            <label for="name" class="col-md-4 control-label">Nombre</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail</label>
+                            <label for="email" class="col-md-4 control-label">E-Mail</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
@@ -39,8 +39,47 @@
                             </div>
                         </div>
 
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="empresa">Empresa</label>
+                                <div class="col-md-6">
+
+                                    <select id="empresa" name="empresa" class="form-control">
+                                        <option value = "" selected disabled hidden>Seleciona Empresa</option>
+                                        @if(count($companies) > 0)
+                                            @foreach ($companies as $company => $value)
+                                                <option value="{{$value->clave}}">{{$value->clave}} -  {{$value->descripcion}}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                    @if ($errors->has('empresa'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="area">Area</label>
+                                <div class="col-md-6">
+                                    <select id="area" name="area" class="form-control">
+                                        <option value = "" selected disabled hidden>Seleciona Area</option>
+                                        @if(count($areas) > 0)
+                                            @foreach ($areas as $area => $value)
+                                                <option value="{{$value->clave}}">{{$value->clave}} -  {{$value->descripcion}}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                    @if ($errors->has('area'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
                         <div class="form-group">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                            <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -54,7 +93,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirmar Password</label>
+                            <label for="password-confirm" class="col-md-4 control-label">Confirmar Password</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -68,6 +107,14 @@
                                 </button>
                             </div>
                         </div>
+
+                            @if($errors->any())
+                                <div class="col-md-6 col-md-offset-4">
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$errors->first()}}
+                                    </div>
+                                </div>
+                            @endif
                     </form>
                 </div>
             </div>

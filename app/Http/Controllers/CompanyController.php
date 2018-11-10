@@ -27,15 +27,15 @@ class CompanyController extends Controller
     public function index()
     {
         return view('companies.index', [
-            'companies' => Company::getComapanies(),
+            'companies' => Company::getDataBycompany(),
             'areas' => Area::getAreas(),
         ]);
     }
 
     public function create()
     {
+        $id = Input::get('empresas_id');
         $data = [
-            'id' => Input::get('empresas_id'),
             'Empresa' => Input::get('clave_empresa'),
             'Descripcion' => Input::get('descripcion_empresa'),
             'Area' => Input::get('area_empresa'),
@@ -63,8 +63,16 @@ class CompanyController extends Controller
                     ->withInput();
             }
 
-            Company::createCompany($data);
-            return redirect('companies/index')->with('status', 'Empresa Creada Exitosamente!');
+            if(!empty($id))
+            {
+                Company::updateCompany($id, $data);
+                return redirect('companies/index')->with('status', 'Empresa Actualisado Exitosamente!');
+            }
+            else
+            {
+                Company::createCompany($data);
+                return redirect('companies/index')->with('status', 'Empresa Creada Exitosamente!');
+            }
 
         } elseif (Input::get('delete')) {
 

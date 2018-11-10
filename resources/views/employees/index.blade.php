@@ -1,5 +1,4 @@
 @extends('layout')
-
 @section('content')
     <div class="container">
         <div class="row">
@@ -12,7 +11,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="id_empleado">Empleado ID</label>
                                 <div class="col-md-4">
-                                    <input id="id_empleado" name="id_empleado" type="text" placeholder="Empleado ID" class="form-control input-md">
+                                    <input id="id_empleado" name="id_empleado" type="text" placeholder="Empleado ID" class="form-control input-md" readonly="true" value="{{ old('id_empleado')}}">
                                 </div>
                             </div>
 
@@ -41,53 +40,41 @@
                                     <input id="imss_empleado" name="imss_empleado" type="number" placeholder="NSS Empleado" class="form-control input-md" value="{{ old('imss_empleado')}}">
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                <label class="col-md-2 control-label" for="empresa_empleado">Empresa</label>
+                                <label class="col-md-2 control-label" for="job_empleado">Puesto</label>
                                 <div class="col-md-4">
+                                    <select id="job_empleado" name="job_empleado" class="form-control selector">
+                                        <option value="default" selected disabled hidden>Seleciona Puesto</option>
+                                        @if(count($jobs) > 0)
+                                            @foreach ($jobs as $job => $value)
 
-                                    <select id="empresa_empleado" name="empresa_empleado" class="form-control">
-                                        <option value = "" selected disabled hidden>Seleciona Empresa</option>
-                                        @if(count($companies) > 0)
-                                            @foreach ($companies as $company => $value)
-                                                <option value="{{$value->descripcion}}">{{$value->clave}} -  {{$value->descripcion}}</option>
+                                                    <option value="{{$value->id}}" id="{{$value->id}}">{{$value->id}}
+                                                        - {{$value->descripcion}}</option>
                                             @endforeach
                                         @endif
-                                    </select>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="area">Area</label>
-                                <div class="col-md-4">
-                                    <select id="area_empleado" name="area_empleado" class="form-control">
-                                        <option value = "" selected disabled hidden>Seleciona Area</option>
-                                        @if(count($areas) > 0)
-                                            @foreach ($areas as $area => $value)
-                                                <option value="{{$value->descripcion}}">{{$value->clave}} -  {{$value->descripcion}}</option>
-                                            @endforeach
-                                        @endif
                                     </select>
                                 </div>
                             </div>
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"></label>
                                     <div class="col-md-8">
-                                        <button id="insert" name="insert" class="btn btn-primary" value="insert">Ingresar</button>
+                                        <button id="insert" name="insert" class="btn btn-primary" value="insert">Guardar</button>
                                         <button id="delete" name="delete" class="btn btn-primary" value="delete">Eliminar</button>
+                                        <button id="discard" type="button" name="discard" class="btn btn-primary">Limpiar</button>
                                     </div>
                                 </div>
 
                             @if($errors->any())
-                                <div class="col-md-4 col-md-offset-2">
+                                <div class="col-md-4 col-md-offset-2" id="alert">
                                     <div class="alert alert-danger" role="alert">
                                         {{$errors->first()}}
                                     </div>
                                 </div>
                             @endif
                             @if (session('status'))
-                                <div class="col-md-4 col-md-offset-2">
-                                    <div class="alert alert-success" role="alert">
+                                <div class="col-md-4 col-md-offset-2" id="alert">
+                                    <div class="alert alert-success" role="alert" >
                                         {{ session('status') }}
                                     </div>
                                 </div>
@@ -129,11 +116,17 @@
                                         <td>{{$value->imss}}</td>
                                         <td>{{$value->empresa}}</td>
                                         <td>{{$value->area}}</td>
+                                        <td>
+                                            <button type="button" name="edit_employee" id="edit_employee"
+                                                    class="btn btn-primary edit_employee"
+                                                    value="{{$value->id}}">Editar
+                                            </button>
+                                        </td>
                                     </tr>
                                 @endforeach
                             @else
                                 <tr>
-                                    <td>No hay Empresas.</td>
+                                    <td>No hay Empleados.</td>
                                 </tr>
                             @endif
                             </tbody>
@@ -143,4 +136,9 @@
             </div>
         </div>
     </div>
+    <form method="GET" id="DataEmployeesById" action="{{ url('/employees/id/')}}"></form>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/employees/index.js') }}"></script>
 @endsection

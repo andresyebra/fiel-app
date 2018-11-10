@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h4>Empresas</h4></div>
+                    <div class="panel-heading"><h4>Empresa</h4></div>
                     <div class="panel-body">
                         <form class="form-horizontal" method="POST" action="{{ url('/companies/create')}}">
                             {!! csrf_field() !!}
@@ -12,15 +12,15 @@
                                 <label class="col-md-2 control-label" for="empresas_id">Empresas ID</label>
                                 <div class="col-md-4">
                                     <input id="empresas_id" name="empresas_id" type="text" placeholder="Empresa ID"
-                                           class="form-control input-md" value="{{ old('empresas_id')}}">
+                                           class="form-control input-md" readonly = "true" value="{{$companies->id}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="clave_empresa">Clave Empresa</label>
                                 <div class="col-md-4">
                                     <input id="clave_empresa" name="clave_empresa" type="text"
-                                           placeholder="Clave Empresa" class="form-control input-md"
-                                           value="{{ old('clave_empresa')}}">
+                                           placeholder="Clave Empresa" class="form-control input-md"  readonly = "true"
+                                           value="{{$companies->clave}}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -29,18 +29,24 @@
                                 <div class="col-md-4">
                                     <input id="descripcion_empresa" name="descripcion_empresa" type="text"
                                            placeholder="Descripcion Empresa" class="form-control input-md"
-                                           value="{{ old('descripcion_empresa')}}">
+                                           value="{{$companies->descripcion}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="area_empresa">Area</label>
                                 <div class="col-md-4">
                                     <select id="area_empresa" name="area_empresa" class="form-control">
-                                        <option value="" selected disabled hidden>Seleciona Area</option>
+                                        {{--<option value="" selected disabled hidden>Seleciona Area</option>--}}
                                         @if(count($areas) > 0)
                                             @foreach ($areas as $area => $value)
-                                                <option value="{{$value->descripcion}}">{{$value->clave}}
-                                                    - {{$value->descripcion}}</option>
+                                                @if($companies->area == $value->clave)
+                                                    <option value="{{$value->clave}}" selected>{{$value->clave}}
+                                                        - {{$value->descripcion}}</option>
+                                                @else
+                                                    <option value="{{$value->clave}}">{{$value->clave}}
+                                                        - {{$value->descripcion}}</option>
+                                                @endif
+
                                             @endforeach
                                         @endif
 
@@ -51,9 +57,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label"></label>
                                 <div class="col-md-8">
-                                    <button id="insert" name="insert" class="btn btn-primary" value="insert">Ingresar
-                                    </button>
-                                    <button id="delete" name="delete" class="btn btn-primary" value="delete">Eliminar
+                                    <button id="insert" name="insert" class="btn btn-primary" value="insert">Guardar
                                     </button>
                                 </div>
                             </div>
@@ -83,7 +87,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h4>Lista de Empresas</h4></div>
+                    <div class="panel-heading"><h4>Empresa</h4></div>
                     <div class="panel-body">
 
                         <table class="table">
@@ -96,20 +100,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if(count($companies) > 0)
-                                @foreach ($companies as $company => $value)
                                     <tr>
-                                        <td>{{$value->id}}</td>
-                                        <td>{{$value->clave}}</td>
-                                        <td>{{$value->descripcion}}</td>
-                                        <td>{{$value->area}}</td>
+                                        <td>{{$companies->id}}</td>
+                                        <td>{{$companies->clave}}</td>
+                                        <td>{{$companies->descripcion}}</td>
+                                        <td>{{$companies->area}}</td>
                                     </tr>
-                                @endforeach
-                            @else
-                                <tr>
-                                    <td>No hay Empresas.</td>
-                                </tr>
-                            @endif
                             </tbody>
                         </table>
                     </div>

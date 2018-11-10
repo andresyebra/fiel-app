@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Employee;
 use App\Job;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
-class EmployeeController extends Controller
+class JobController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -27,22 +26,16 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('employees.index', [
-            'employees' => Employee::getEmployees(),
-            'jobs' => Job::getJobs(),
+        return view('job.index', [
+            'jobs' => Job::getJobs()
         ]);
     }
 
     public function create()
     {
         $data = [
-            'id' => Input::get('id_empleado'),
-            'Empleado' => Input::get('clave_empleado'),
-            'Nombre' => Input::get('nombre_empleado'),
-            'Curp' => Input::get('curp_empleado'),
-            'Imss' => Input::get('imss_empleado'),
-            'Puesto' => Input::get('job_empleado'),
-
+            'id' => Input::get('job_id'),
+            'description' => Input::get('description_job'),
         ];
         $messages = [
             'required' => 'El campo :attribute es requerido.',
@@ -54,30 +47,26 @@ class EmployeeController extends Controller
         if (Input::get('insert')) {
             $validator = Validator::make($data,
                 [
-                    'Empleado' => 'required|string|max:20',
-                    'Nombre' => 'required|string|max:100',
-                    'Curp' => 'required|string|size:18',
-                    'Imss' => 'required|string|size:11',
-                    'Puesto' => 'required|string',
+                    'description' => 'required|string|max:100',
                 ],
                 $messages
             );
 
             if ($validator->fails()) {
-                return redirect('employees/index')
+                return redirect('job/index')
                     ->withErrors($validator)
                     ->withInput();
             }
 
             if(!empty($data['id']))
             {
-                Employee::updateEmployee($data['id'], $data);
-                return redirect('employees/index')->with('status', 'Empleado Actualisado Exitosamente!');
+                Job::updateJob($data['id'], $data);
+                return redirect('job/index')->with('status', 'Puesto Actualisado Exitosamente!');
             }
             else
             {
-                Employee::createEmployee($data);
-                return redirect('employees/index')->with('status', 'Empleado Creado Exitosamente!');
+                Job::createJob($data);
+                return redirect('job/index')->with('status', 'Puesto Creado Exitosamente!');
             }
 
 
@@ -91,22 +80,22 @@ class EmployeeController extends Controller
             );
 
             if ($validator->fails()) {
-                return redirect('employees/index')
+                return redirect('job/index')
                     ->withErrors($validator)
                     ->withInput();
             }
 
-            Employee::deleteEmployee($data);
-            return redirect('employees/index')->with('status', 'Empleado Eliminado Exitosamente!');
+            Job::deleteJob($data);
+            return redirect('job/index')->with('status', 'Puesto Eliminado Exitosamente!');
         }
 
-        return view('employees.index');
+        return view('job.index');
     }
 
-    public function getEmployeeById($id)
+    public function getJobsById($id)
     {
-        $employee_id = Employee::getEmployeeById($id);
-        if($employee_id == null)
+        $job_id = Job::getJobById($id);
+        if($job_id == null)
         {
             return view('errors.404');
         }
@@ -114,7 +103,7 @@ class EmployeeController extends Controller
         $response = [
             'status' => 'success',
             'id' => $id,
-            'employee_data' => $employee_id
+            'job_data' => $job_id
         ];
         return response()->json($response);
     }
