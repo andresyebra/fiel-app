@@ -11,33 +11,43 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="id_empleado">Empleado ID</label>
                                 <div class="col-md-4">
-                                    <input id="id_empleado" name="id_empleado" type="text" placeholder="Empleado ID" class="form-control input-md" readonly="true" value="{{ old('id_empleado')}}">
+                                    <input id="id_empleado" name="id_empleado" type="text" placeholder="Empleado ID"
+                                           class="form-control input-md" readonly="true"
+                                           value="{{ old('id_empleado')}}">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="clave_empleado">Clave Empleado</label>
                                 <div class="col-md-4">
-                                    <input id="clave_empleado" name="clave_empleado" type="text" placeholder="Clave Empleado" class="form-control input-md" value="{{ old('clave_empleado')}}">
+                                    <input id="clave_empleado" name="clave_empleado" type="text"
+                                           placeholder="Clave Empleado" class="form-control input-md"
+                                           value="{{ old('clave_empleado')}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="nombre_empleado">Nombre Empleado</label>
                                 <div class="col-md-4">
-                                    <input id="nombre_empleado" name="nombre_empleado" type="text" placeholder="Nombre Empleado" class="form-control input-md" value="{{ old('nombre_empleado')}}">
+                                    <input id="nombre_empleado" name="nombre_empleado" type="text"
+                                           placeholder="Nombre Empleado" class="form-control input-md"
+                                           value="{{ old('nombre_empleado')}}">
                                 </div>
                             </div>
 
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label" for="curp_empleado">CURP</label>
-                                    <div class="col-md-4">
-                                        <input id="curp_empleado" name="curp_empleado" type="text" placeholder="CURP Empleado" class="form-control input-md" value="{{ old('curp_empleado')}}">
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="curp_empleado">CURP</label>
+                                <div class="col-md-4">
+                                    <input id="curp_empleado" name="curp_empleado" type="text"
+                                           placeholder="CURP Empleado" class="form-control input-md"
+                                           value="{{ old('curp_empleado')}}">
                                 </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="imss_empleado">IMSS(NSS)</label>
                                 <div class="col-md-4">
-                                    <input id="imss_empleado" name="imss_empleado" type="number" placeholder="NSS Empleado" class="form-control input-md" value="{{ old('imss_empleado')}}">
+                                    <input id="imss_empleado" name="imss_empleado" type="number"
+                                           placeholder="NSS Empleado" class="form-control input-md"
+                                           value="{{ old('imss_empleado')}}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -48,22 +58,25 @@
                                         @if(count($jobs) > 0)
                                             @foreach ($jobs as $job => $value)
 
-                                                    <option value="{{$value->id}}" id="{{$value->id}}">{{$value->id}}
-                                                        - {{$value->descripcion}}</option>
+                                                <option value="{{$value->id}}" id="{{$value->id}}">{{$value->id}}
+                                                    - {{$value->descripcion}}</option>
                                             @endforeach
                                         @endif
 
                                     </select>
                                 </div>
                             </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label"></label>
-                                    <div class="col-md-8">
-                                        <button id="insert" name="insert" class="btn btn-primary" value="insert">Guardar</button>
-                                        <button id="delete" name="delete" class="btn btn-primary" value="delete">Eliminar</button>
-                                        <button id="discard" type="button" name="discard" class="btn btn-primary">Limpiar</button>
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label"></label>
+                                <div class="col-md-8">
+                                    <button id="insert" name="insert" class="btn btn-primary" value="insert">Guardar
+                                    </button>
+                                    <button id="delete" name="delete" class="btn btn-primary" value="delete">Eliminar
+                                    </button>
+                                    <button id="discard" type="button" name="discard" class="btn btn-primary">Limpiar
+                                    </button>
                                 </div>
+                            </div>
 
                             @if($errors->any())
                                 <div class="col-md-4 col-md-offset-2" id="alert">
@@ -74,7 +87,7 @@
                             @endif
                             @if (session('status'))
                                 <div class="col-md-4 col-md-offset-2" id="alert">
-                                    <div class="alert alert-success" role="alert" >
+                                    <div class="alert alert-success" role="alert">
                                         {{ session('status') }}
                                     </div>
                                 </div>
@@ -85,15 +98,25 @@
             </div>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h4>Lista de Empleados</h4></div>
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-9"><h4>Lista de Empleados</h4></div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                    <input id="buscar_empleado" type="text" class="form-control" name="buscar"
+                                           placeholder="Buscar Empleado">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="panel-body">
 
-                        <table class="table">
+                        <table class="table" id="tabla_employee">
                             <thead class="thead-light">
                             <tr>
                                 <th scope="col">Empleado ID</th>
