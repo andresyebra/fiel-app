@@ -49,7 +49,8 @@
                         <a class="nav-link" href="{{ url('/') }}">Inicio <span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/employees/index')}}">Empleados<span class="sr-only"></span></a>
+                        <a class="nav-link" href="{{url('/employees/index')}}">Empleados<span
+                                    class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/companies/index')}}">Empresa<span class="sr-only"></span></a>
@@ -60,6 +61,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/area/index')}}">Areas<span class="sr-only"></span></a>
                     </li>
+                    {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link" href="{{url('/evaluate/index')}}">Evaluacion<span class="sr-only"></span></a>--}}
+                    {{--</li>--}}
                 </ul>
                 @endif
             </div>

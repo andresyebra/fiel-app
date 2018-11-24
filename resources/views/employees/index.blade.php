@@ -144,6 +144,10 @@
                                                     class="btn btn-primary edit_employee"
                                                     value="{{$value->id}}">Editar
                                             </button>
+                                            <a type="button" href="{{url('/evaluate/id/'.$value->id)}}"
+                                               name="evaluate_employee" id="evaluate_employee"
+                                               class="btn btn-primary">Evaluar
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

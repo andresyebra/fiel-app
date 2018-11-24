@@ -37,3 +37,7 @@ Route::get('/job','JobController@index');
 Route::get('/job/index','JobController@index');
 Route::get('/job/id/{id}', 'JobController@getJobsById');
 Route::post('/job/create','JobController@create');
+
+Route::get('/evaluate','EvaluationController@index');
+Route::get('/evaluate/index','EvaluationController@index');
+Route::get('/evaluate/id/{id}', 'EvaluationController@getEmployeeByIdEvaluate');
