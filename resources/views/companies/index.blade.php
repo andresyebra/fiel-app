@@ -36,7 +36,6 @@
                                 <label class="col-md-2 control-label" for="area_empresa">Area</label>
                                 <div class="col-md-4">
                                     <select id="area_empresa" name="area_empresa" class="form-control">
-                                        {{--<option value="" selected disabled hidden>Seleciona Area</option>--}}
                                         @if(count($areas) > 0)
                                             @foreach ($areas as $area => $value)
                                                 @if($companies->area == $value->clave)

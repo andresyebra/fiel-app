@@ -57,8 +57,7 @@
                                         <option value="default" selected disabled hidden>Seleciona Puesto</option>
                                         @if(count($jobs) > 0)
                                             @foreach ($jobs as $job => $value)
-
-                                                <option value="{{$value->id}}" id="{{$value->id}}">{{$value->id}}
+                                                <option value="{{$value->id}}" id="{{$value->id}}" {{ (old('job_empleado') == $value->id ? 'selected':'') }}>{{$value->id}}
                                                     - {{$value->descripcion}}</option>
                                             @endforeach
                                         @endif
@@ -115,7 +114,6 @@
                         </div>
                     </div>
                     <div class="panel-body">
-
                         <table class="table" id="tabla_employee">
                             <thead class="thead-light">
                             <tr>

@@ -56,3 +56,9 @@ $factory->define(App\Job::class, function (Faker $faker) {
         'empresa' => $faker->randomElement(['Empresa 1','Empresa 2','Empresa 3']),
     ];
 });
+
+$factory->define(App\Resignation::class, function (Faker $faker) {
+    return [
+        'descripcion' => $faker->jobTitle,
+    ];
+});

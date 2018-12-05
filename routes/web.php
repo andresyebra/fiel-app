@@ -30,14 +30,15 @@ Route::post('/companies/create','CompanyController@create');
 
 Route::get('/employees','EmployeeController@index');
 Route::get('/employees/index','EmployeeController@index');
-Route::get('/employees/id/{id}', 'EmployeeController@getEmployeeById');
 Route::post('/employees/create','EmployeeController@create');
+Route::get('/employees/id/{id}', 'EmployeeController@getEmployeeById');
 
 Route::get('/job','JobController@index');
 Route::get('/job/index','JobController@index');
-Route::get('/job/id/{id}', 'JobController@getJobsById');
 Route::post('/job/create','JobController@create');
+Route::get('/job/id/{id}', 'JobController@getJobsById');
 
 Route::get('/evaluate','EvaluationController@index');
 Route::get('/evaluate/index','EvaluationController@index');
+Route::post('/evaluate/create','EvaluationController@create');
 Route::get('/evaluate/id/{id}', 'EvaluationController@getEmployeeByIdEvaluate');
