@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -42,3 +43,5 @@ Route::get('/evaluate','EvaluationController@index');
 Route::get('/evaluate/index','EvaluationController@index');
 Route::post('/evaluate/create','EvaluationController@create');
 Route::get('/evaluate/id/{id}', 'EvaluationController@getEmployeeByIdEvaluate');
+
+Route::get('/send/email', 'MailController@mail');

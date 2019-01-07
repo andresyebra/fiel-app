@@ -54,18 +54,18 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
-//        dd($data);
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'name' => 'required|string|max:100',
+            'email' => 'required|string|email|max:40|unique:users',
             'empresa' => 'required|string|max:20',
             'area' => 'required|string|max:20',
             'password' => 'required|string|min:6|confirmed',
+            'licencia' => 'required|string|min:8|max:8|unique:users|exists:licences',
         ], [
                 'required' => 'El campo :attribute es requerido.',
                 'max' => 'El campo :attribute maximo :max caracteres.',
@@ -77,7 +77,7 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \App\User
      */
     protected function create(array $data)
@@ -87,6 +87,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'empresa' => $data['empresa'],
             'area' => $data['area'],
+            'licencia' => $data['licencia'],
             'password' => Hash::make($data['password']),
         ]);
     }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Area;
 use App\Company;
 use Illuminate\Support\Facades\Input;
@@ -16,7 +15,7 @@ class CompanyController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -63,13 +62,10 @@ class CompanyController extends Controller
                     ->withInput();
             }
 
-            if(!empty($id))
-            {
+            if (!empty($id)) {
                 Company::updateCompany($id, $data);
                 return redirect('companies/index')->with('status', 'Empresa Actualisado Exitosamente!');
-            }
-            else
-            {
+            } else {
                 Company::createCompany($data);
                 return redirect('companies/index')->with('status', 'Empresa Creada Exitosamente!');
             }

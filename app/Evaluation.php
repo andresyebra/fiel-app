@@ -29,12 +29,12 @@ class Evaluation extends Model
             ['evaluations.empresa', '=', $data['empresa']],
             ['evaluations.empleado_id', '=', $data['id']]
         ])->update([
-                'competente' => $data['competente'],
-                'cumplia' => $data['cumplio'],
-                'satisfecho' => $data['satisfecho'],
-                'renuncia' => $data['renuncia'],
-                'perido_laboro' => date("Y-m-d H:i:s")
-            ]);
+            'competente' => $data['competente'],
+            'cumplia' => $data['cumplio'],
+            'satisfecho' => $data['satisfecho'],
+            'renuncia' => $data['renuncia'],
+            'perido_laboro' => date("Y-m-d H:i:s")
+        ]);
 
         return $updated;
     }

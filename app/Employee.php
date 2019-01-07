@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ class Employee extends Model
 
     public static function getEmployees()
     {
-        return DB::table('employees')->where('empresa','=', Auth::user()->empresa)->get();
+        return DB::table('employees')->where('empresa', '=', Auth::user()->empresa)->get();
     }
 
     public static function createEmployee($data)

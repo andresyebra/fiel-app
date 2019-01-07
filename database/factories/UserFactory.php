@@ -62,3 +62,14 @@ $factory->define(App\Resignation::class, function (Faker $faker) {
         'descripcion' => $faker->jobTitle,
     ];
 });
+
+$factory->define(App\Licence::class, function (Faker $faker) {
+    return [
+        'licencia' => '18A01A181F',
+        'fecha_inicial' => '2019-01-01',
+        'fecha_final' => '2019-12-31',
+        'tipo' => 'A',
+        'empresa' => '1',
+        'observacion' => '01',
+    ];
+});

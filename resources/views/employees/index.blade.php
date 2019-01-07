@@ -57,7 +57,8 @@
                                         <option value="default" selected disabled hidden>Seleciona Puesto</option>
                                         @if(count($jobs) > 0)
                                             @foreach ($jobs as $job => $value)
-                                                <option value="{{$value->id}}" id="{{$value->id}}" {{ (old('job_empleado') == $value->id ? 'selected':'') }}>{{$value->id}}
+                                                <option value="{{$value->id}}"
+                                                        id="{{$value->id}}" {{ (old('job_empleado') == $value->id ? 'selected':'') }}>{{$value->id}}
                                                     - {{$value->descripcion}}</option>
                                             @endforeach
                                         @endif

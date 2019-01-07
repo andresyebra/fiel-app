@@ -18,7 +18,7 @@ class EvaluationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -69,13 +69,10 @@ class EvaluationController extends Controller
         }
 
         $evaluation = Evaluation::getExistsEvaluation($data);
-        if ($evaluation)
-        {
+        if ($evaluation) {
             Evaluation::updateEvaluation($data);
             return redirect('evaluate/id/' . $data['id'])->with('status', 'Evaluacion actualizada Exitosamente!');
-        }
-        else
-        {
+        } else {
             Evaluation::createEvaluation($data);
             return redirect('evaluate/id/' . $data['id'])->with('status', 'Evaluacion Creado Exitosamente!');
         }
@@ -85,14 +82,13 @@ class EvaluationController extends Controller
     {
         $evaluation_info = '';
         $employee_info = Employee::getEmployeeById($id);
-        $data =[
+        $data = [
             'id' => $employee_info->id,
             'empresa' => $employee_info->empresa
         ];
 
         $evaluation = Evaluation::getExistsEvaluation($data);
-        if($evaluation)
-        {
+        if ($evaluation) {
             $evaluation_info = Evaluation::getEvaluationByCompany($data);
         }
         return view('evaluation.index', [

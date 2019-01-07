@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Employee;
 use App\Job;
 use Illuminate\Support\Facades\Input;
@@ -17,7 +16,7 @@ class EmployeeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -69,13 +68,10 @@ class EmployeeController extends Controller
                     ->withInput();
             }
 
-            if(!empty($data['id']))
-            {
+            if (!empty($data['id'])) {
                 Employee::updateEmployee($data['id'], $data);
                 return redirect('employees/index')->with('status', 'Empleado Actualisado Exitosamente!');
-            }
-            else
-            {
+            } else {
                 Employee::createEmployee($data);
                 return redirect('employees/index')->with('status', 'Empleado Creado Exitosamente!');
             }
@@ -106,8 +102,7 @@ class EmployeeController extends Controller
     public function getEmployeeById($id)
     {
         $employee_id = Employee::getEmployeeById($id);
-        if($employee_id == null)
-        {
+        if ($employee_id == null) {
             return view('errors.404');
         }
 

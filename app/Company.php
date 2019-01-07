@@ -17,7 +17,7 @@ class Company extends Model
 
     public static function getDataBycompany()
     {
-        return DB::table('companies')->where('clave','=', Auth::user()->empresa)->first();
+        return DB::table('companies')->where('clave', '=', Auth::user()->empresa)->first();
     }
 
     public static function createCompany($data)

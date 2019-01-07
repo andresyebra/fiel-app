@@ -16,7 +16,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-2 control-label" for="description_job">Descripcion de Puesto</label>
+                                <label class="col-md-2 control-label" for="description_job">Descripcion de
+                                    Puesto</label>
                                 <div class="col-md-4">
                                     <input id="description_job" name="description_job" type="text"
                                            placeholder="Descripcion Puesto" class="form-control input-md"
@@ -30,7 +31,8 @@
                                     </button>
                                     <button id="delete" name="delete" class="btn btn-primary" value="delete">Eliminar
                                     </button>
-                                    <button id="discard" type="button" name="discard" class="btn btn-primary">Limpiar</button>
+                                    <button id="discard" type="button" name="discard" class="btn btn-primary">Limpiar
+                                    </button>
                                 </div>
                             </div>
                             @if($errors->any())

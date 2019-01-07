@@ -83,27 +83,33 @@
                                         <br>
                                         <label class="radio-inline" for="radios_cumplia">No cumplía</label>
                                         <label class="radio-inline" for="radios-cumplia0">
-                                            <input type="radio" name="radios_cumplia" id="radios-cumplia0" value="0" {{ old('radios_cumplia')== "0" || (isset($evaluation_info->cumplia) && $evaluation_info->cumplia == "0") ? 'checked' : '' }}>
+                                            <input type="radio" name="radios_cumplia" id="radios-cumplia0"
+                                                   value="0" {{ old('radios_cumplia')== "0" || (isset($evaluation_info->cumplia) && $evaluation_info->cumplia == "0") ? 'checked' : '' }}>
                                             0
                                         </label>
                                         <label class="radio-inline" for="radios-cumplia1">
-                                            <input type="radio" name="radios_cumplia" id="radios-cumplia1" value="1" {{ old('radios_cumplia')== "1" || (isset($evaluation_info->cumplia) && $evaluation_info->cumplia == "1") ? 'checked' : '' }}>
+                                            <input type="radio" name="radios_cumplia" id="radios-cumplia1"
+                                                   value="1" {{ old('radios_cumplia')== "1" || (isset($evaluation_info->cumplia) && $evaluation_info->cumplia == "1") ? 'checked' : '' }}>
                                             1
                                         </label>
                                         <label class="radio-inline" for="radios-cumplia2">
-                                            <input type="radio" name="radios_cumplia" id="radios-cumplia2" value="2" {{ old('radios_cumplia')== "2"  || (isset($evaluation_info->cumplia) && $evaluation_info->cumplia == "2") ? 'checked' : '' }}>
+                                            <input type="radio" name="radios_cumplia" id="radios-cumplia2"
+                                                   value="2" {{ old('radios_cumplia')== "2"  || (isset($evaluation_info->cumplia) && $evaluation_info->cumplia == "2") ? 'checked' : '' }}>
                                             2
                                         </label>
                                         <label class="radio-inline" for="radios-cumplia3">
-                                            <input type="radio" name="radios_cumplia" id="radios-cumplia3" value="3" {{ old('radios_cumplia')== "3" || (isset($evaluation_info->cumplia) && $evaluation_info->cumplia == "3") ? 'checked' : '' }}>
+                                            <input type="radio" name="radios_cumplia" id="radios-cumplia3"
+                                                   value="3" {{ old('radios_cumplia')== "3" || (isset($evaluation_info->cumplia) && $evaluation_info->cumplia == "3") ? 'checked' : '' }}>
                                             3
                                         </label>
                                         <label class="radio-inline" for="radios-cumplia4">
-                                            <input type="radio" name="radios_cumplia" id="radios-cumplia4" value="4" {{ old('radios_cumplia')== "4" || (isset($evaluation_info->cumplia) && $evaluation_info->cumplia == "4") ? 'checked' : '' }}>
+                                            <input type="radio" name="radios_cumplia" id="radios-cumplia4"
+                                                   value="4" {{ old('radios_cumplia')== "4" || (isset($evaluation_info->cumplia) && $evaluation_info->cumplia == "4") ? 'checked' : '' }}>
                                             4
                                         </label>
                                         <label class="radio-inline" for="radios-cumplia5">
-                                            <input type="radio" name="radios_cumplia" id="radios-cumplia5" value="5" {{ old('radios_cumplia')== "5" || (isset($evaluation_info->cumplia) && $evaluation_info->cumplia == "5") ? 'checked' : '' }}>
+                                            <input type="radio" name="radios_cumplia" id="radios-cumplia5"
+                                                   value="5" {{ old('radios_cumplia')== "5" || (isset($evaluation_info->cumplia) && $evaluation_info->cumplia == "5") ? 'checked' : '' }}>
                                             5
                                         </label>
                                         <label class="radio-inline control-label" for="radios_cumplia">Cumplía</label>
@@ -201,7 +207,8 @@
                             </div>
 
                             <input type="hidden" name="empleado_id" id="empleado_id" value="{{$employee->id}}">
-                            <input type="hidden" name="empresa_evalua" id="empresa_evalua" value="{{$employee->empresa}}">
+                            <input type="hidden" name="empresa_evalua" id="empresa_evalua"
+                                   value="{{$employee->empresa}}">
                         </form>
                         @if($errors->any())
                             <div class="col-md-4 col-md-offset-2" id="alert">

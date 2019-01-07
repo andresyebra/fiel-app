@@ -12,14 +12,14 @@
                                 <label class="col-md-2 control-label" for="empresas_id">Empresas ID</label>
                                 <div class="col-md-4">
                                     <input id="empresas_id" name="empresas_id" type="text" placeholder="Empresa ID"
-                                           class="form-control input-md" readonly = "true" value="{{$companies->id}}">
+                                           class="form-control input-md" readonly="true" value="{{$companies->id}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="clave_empresa">Clave Empresa</label>
                                 <div class="col-md-4">
                                     <input id="clave_empresa" name="clave_empresa" type="text"
-                                           placeholder="Clave Empresa" class="form-control input-md"  readonly = "true"
+                                           placeholder="Clave Empresa" class="form-control input-md" readonly="true"
                                            value="{{$companies->clave}}">
                                 </div>
                             </div>
@@ -99,12 +99,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                                    <tr>
-                                        <td>{{$companies->id}}</td>
-                                        <td>{{$companies->clave}}</td>
-                                        <td>{{$companies->descripcion}}</td>
-                                        <td>{{$companies->area}}</td>
-                                    </tr>
+                            <tr>
+                                <td>{{$companies->id}}</td>
+                                <td>{{$companies->clave}}</td>
+                                <td>{{$companies->descripcion}}</td>
+                                <td>{{$companies->area}}</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

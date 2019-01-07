@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Job;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,7 +15,7 @@ class JobController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -58,13 +57,10 @@ class JobController extends Controller
                     ->withInput();
             }
 
-            if(!empty($data['id']))
-            {
+            if (!empty($data['id'])) {
                 Job::updateJob($data['id'], $data);
                 return redirect('job/index')->with('status', 'Puesto Actualisado Exitosamente!');
-            }
-            else
-            {
+            } else {
                 Job::createJob($data);
                 return redirect('job/index')->with('status', 'Puesto Creado Exitosamente!');
             }
@@ -95,8 +91,7 @@ class JobController extends Controller
     public function getJobsById($id)
     {
         $job_id = Job::getJobById($id);
-        if($job_id == null)
-        {
+        if ($job_id == null) {
             return view('errors.404');
         }
 
