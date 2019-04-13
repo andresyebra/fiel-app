@@ -4,7 +4,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h4>Evaluacion de Empleado</h4></div>
+                    <div class="panel-heading">
+                        <h4>Evaluacion de Empleado ({{$info_company->descripcion}}) </h4></div>
                     <div class="panel-body">
                         <form class="form-horizontal" method="POST" action="{{url("/evaluate/create")}}">
                             {!! csrf_field() !!}
@@ -163,13 +164,82 @@
                             </div>
                             <div class="form-group">
                                 <div class="row col-md-8 col-md-offset-1">
+
+                                    <label class="control-label" for="radios">*Trabajaba bien en equipo:</label>
+                                </div>
+                                <div class="row col-md-offset-2">
+                                    <div class="col-md-12">
+                                        <br>
+                                        <label class="radio-inline" for="radios_equipo">No trabajo</label>
+                                        <label class="radio-inline" for="radios-equipo0">
+                                            <input type="radio" name="radios_equipo" id="radios-equipo0"
+                                                   value="0" {{ old('radios_equipo')== "0" || (isset($evaluation_info->equipo) && $evaluation_info->equipo == "0") ? 'checked' : '' }}>
+                                            0
+                                        </label>
+                                        <label class="radio-inline" for="radios-equipo1">
+                                            <input type="radio" name="radios_equipo" id="radios-equipo1"
+                                                   value="1" {{ old('radios_equipo')== "1" || (isset($evaluation_info->equipo) && $evaluation_info->equipo == "1") ? 'checked' : '' }}>
+                                            1
+                                        </label>
+                                        <label class="radio-inline" for="radios-equipo2">
+                                            <input type="radio" name="radios_equipo" id="radios-equipo2"
+                                                   value="2" {{ old('radios_equipo')== "2" || (isset($evaluation_info->equipo) && $evaluation_info->equipo == "2") ? 'checked' : '' }}>
+                                            2
+                                        </label>
+                                        <label class="radio-inline" for="radios-equipo3">
+                                            <input type="radio" name="radios_equipo" id="radios-equipo3"
+                                                   value="3" {{ old('radios_equipo')== "3" || (isset($evaluation_info->equipo) && $evaluation_info->equipo == "3") ? 'checked' : '' }}>
+                                            3
+                                        </label>
+                                        <label class="radio-inline" for="radios-equipo4">
+                                            <input type="radio" name="radios_equipo" id="radios-equipo4"
+                                                   value="4" {{ old('radios_equipo')== "4" || (isset($evaluation_info->equipo) && $evaluation_info->equipo == "4") ? 'checked' : '' }}>
+                                            4
+                                        </label>
+                                        <label class="radio-inline" for="radios-equipo5">
+                                            <input type="radio" name="radios_equipo" id="radios-equipo5"
+                                                   value="5" {{ old('radios_equipo')== "5" || (isset($evaluation_info->equipo) && $evaluation_info->equipo == "5") ? 'checked' : '' }}>
+                                            5
+                                        </label>
+                                        <label class="radio-inline control-label"
+                                               for="radios_equipo">Si trabajo</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row col-md-8 col-md-offset-1">
+                                    <label class="control-label" for="radios">*Se realizo Antidoping:</label>
+                                </div>
+                                <div class="row col-md-offset-2">
+                                    <div class="col-md-12">
+                                        <br>
+                                        <div class="col-md-4">
+                                            <select id="antidoping" name="antidoping" class="form-control selector" {{ ($employee->empresa ==  Auth::user()->empresa) ? '' : 'disabled'}}>
+                                                <option value="default" selected disabled hidden>Seleciona Antidoping
+                                                </option>
+                                                @if(count($antidopings) > 0)
+                                                    @foreach ($antidopings as $antidopings => $value)
+
+                                                        <option value="{{$value->id}}"
+                                                                id="{{$value->id}}" {{ (old('antidoping') == $value->id || (isset($evaluation_info->antidoping) && $evaluation_info->antidoping == $value->id) ? 'selected':'') }}>{{$value->id}}
+                                                            - {{$value->descripcion}}</option>
+                                                    @endforeach
+                                                @endif
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row col-md-8 col-md-offset-1">
                                     <label class="control-label" for="radios">*Tipo de renuncia:</label>
                                 </div>
                                 <div class="row col-md-offset-2">
                                     <div class="col-md-12">
                                         <br>
                                         <div class="col-md-4">
-                                            <select id="resignation" name="resignation" class="form-control selector">
+                                            <select id="resignation" name="resignation" class="form-control selector" {{ ($employee->empresa ==  Auth::user()->empresa) ? '' : 'disabled'}}>
                                                 <option value="default" selected disabled hidden>Seleciona Renuncia
                                                 </option>
                                                 @if(count($resignations) > 0)
@@ -187,24 +257,35 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="row col-md-offset-1">
-                                    <div class="col-md-4"><b>E-mail:</b> Sin informaion</div>
+                                <div class="row col-md-8 col-md-offset-1">
+                                    <label class="control-label" for="radios">*Perido Laboro:</label>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row col-md-offset-1">
-                                    <div class="col-md-4"><b>Perido Laboro:</b> Sin informaion</div>
+                                <div class="row col-md-offset-2">
+                                    <div class="col-md-12">
+                                        <br>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </span>
+                                                <input id="perido_laboro" type="text" class="form-control" name="perido_laboro"
+                                                       placeholder="Ingresa Periodo (1 año, 2 meses)." {{ ($employee->empresa ==  Auth::user()->empresa) ? '' : 'readonly="true"'}} value="{{(isset($evaluation_info->perido_laboro) ? $evaluation_info->perido_laboro : '')}}">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <br>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label"></label>
-                                <div class="col-md-8">
-                                    <button id="insert" name="insert" class="btn btn-primary" value="insert">Guardar
-                                        Evaluacion
-                                    </button>
+                            @if($employee->empresa == Auth::user()->empresa)
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"></label>
+                                    <div class="col-md-8">
+                                        <button id="insert" name="insert" class="btn btn-primary" value="insert">Guardar
+                                            Evaluacion
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
 
                             <input type="hidden" name="empleado_id" id="empleado_id" value="{{$employee->id}}">
                             <input type="hidden" name="empresa_evalua" id="empresa_evalua"
@@ -229,5 +310,50 @@
             </div>
         </div>
     </div>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-9"><h4>Lista de Evaluaciones</h4></div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table" id="tabla_employee">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Evaluacion ID</th>
+                                <th scope="col">Empleado ID</th>
+                                <th scope="col">Empresa Evaluo</th>
+                                <th scope="col">Evaluacion</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @if(count($evaluacion_externa) > 0)
+                                @foreach ($evaluacion_externa as $evaluation_external => $value)
+                                    <tr>
+                                        <td>{{$value->id}}</td>
+                                        <td>{{$value->empleado_id}}</td>
+                                        <td>{{$value->nombre_empresa}}</td>
+                                        <td>
+                                            <a type="button" href="{{url('/evaluate/id/'.$value->empleado_id)}}"
+                                               name="evaluate_employee" id="evaluate_employee"
+                                               class="btn btn-primary">Ver Evaluacion
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td>No hay evaluaciones para este empleado.</td>
+                                </tr>
+                            @endif
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

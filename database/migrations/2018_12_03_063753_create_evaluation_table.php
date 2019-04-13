@@ -23,6 +23,8 @@ class CreateEvaluationTable extends Migration
             $table->string('perido_laboro');
             $table->string('empleado_id');
             $table->string('empresa');
+            $table->string('equipo');
+            $table->string('antidoping');
         });
     }
 

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
          $this->call(CompaniesSeeder::class);
          $this->call(ResignationsSeeder::class);
          $this->call(LicenceSeeder::class);
+         $this->call(AntidopingSeeder::class);
 
     }
 }

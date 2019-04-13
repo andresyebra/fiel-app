@@ -52,4 +52,10 @@ class Employee extends Model
         $employee = DB::table('employees')->where('employees.id', '=', $id)->first();
         return $employee;
     }
+
+    public static function getEmployeeByCurp($curp)
+    {
+        $employee = DB::table('employees')->where('employees.curp', '=', $curp)->get();
+        return $employee;
+    }
 }

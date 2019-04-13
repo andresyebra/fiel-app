@@ -1,0 +1,70 @@
+https://laravel.com
+https://styde.net/curso-introductorio-laravel-5-1/
+https://bootsnipp.com/forms
+------------------------------------------------------------------------------------------------------------------------
+Move to project folder 
+- C:\xampp\htdocs>
+
+Create new Laravel Project 
+- composer create-project laravel/laravel NameProject
+
+Create system authetication
+- php artisan make:auth (if the project needs a system authentication) 
+
+Create new Controller
+- php artisan make:controller NameController
+
+Create new Model
+- php artisan make:model Models/NameModel
+
+Create Migration
+- php artisan make:migration create_users_table (Previously modify migration file "create_user_table.php"
+  with ours fields requieres)
+
+Create Seeders 
+- php artisan make:seeder NameSeeder
+
+Execute Migration/Seeders
+- php artisan migrate --seed
+
+Updated Migrations
+- php artisan migrate:refresh
+- composer dump-autoload (Use this command when does changes on the project and we need updated)
+
+Generated new key to env file(Use if it's a copy of other project)
+- php artisan key:generate
+
+Clear config cache project
+- php artisan config:cache
+
+Get all routes 
+- php artisan route:list
+
+Modify Notifications
+- php artisan vendor:publish --tag=laravel-notifications
+- php artisan vendor:publish --tag=laravel-mail
+
+Set languaje to spanish
+- https://github.com/Laraveles/spanish
+-----------------------------------------------------------------------------------------------------------------------
+Install the Heroku CLI
+Download and install the Heroku CLI.
+
+If you haven't already, log in to your Heroku account and follow the prompts to create a new SSH public key.
+
+- heroku login
+Create a new Git repository
+Initialize a git repository in a new or existing directory
+
+- cd my-project/
+- git init
+- heroku git:remote -a fiel-app
+Deploy your application
+Commit your code to the repository and deploy it to Heroku using Git.
+
+- git add .
+- git commit -am "make it better"
+- git push heroku master
+
+
+php artisan migrate --path=/database/migrations/2018_12_03_063753_create_evaluation_table.php

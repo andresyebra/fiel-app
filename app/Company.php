@@ -46,4 +46,8 @@ class Company extends Model
         return $updated;
     }
 
+    public static function getDataCompanyById($id)
+    {
+        return DB::table('companies')->where('clave', '=', $id)->first();
+    }
 }

@@ -19,7 +19,10 @@ class Evaluation extends Model
             'renuncia' => $data['renuncia'],
             'empresa' => $data['empresa'],
             'empleado_id' => $data['id'],
-            'perido_laboro' => date("Y-m-d H:i:s")
+            'perido_laboro' => $data['perido_laboro'],
+            'equipo' => $data['equipo'],
+            'antidoping' => $data['antidoping']
+
         ]);
     }
 
@@ -33,7 +36,9 @@ class Evaluation extends Model
             'cumplia' => $data['cumplio'],
             'satisfecho' => $data['satisfecho'],
             'renuncia' => $data['renuncia'],
-            'perido_laboro' => date("Y-m-d H:i:s")
+            'perido_laboro' => $data['perido_laboro'],
+            'equipo' => $data['equipo'],
+            'antidoping' => $data['antidoping']
         ]);
 
         return $updated;

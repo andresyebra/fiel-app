@@ -73,3 +73,9 @@ $factory->define(App\Licence::class, function (Faker $faker) {
         'observacion' => '01',
     ];
 });
+
+$factory->define(App\Antidoping::class, function (Faker $faker) {
+    return [
+        'descripcion' => $faker->jobTitle,
+    ];
+});
